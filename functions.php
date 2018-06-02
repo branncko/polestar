@@ -179,7 +179,10 @@ function polestar_scripts() {
 	$collapse_array = array( 
 		'collapse' => get_theme_mod( 'mobile_menu_collapse', 768 )
 	);
-	wp_localize_script( 'polestar-script', 'polestar_resp_menu_params', $collapse_array );    
+	wp_localize_script( 'polestar-script', 'polestar_resp_menu_params', $collapse_array );
+
+	// Top Bar collapse localisation.
+	wp_localize_script( 'polestar-script', 'polestar_top_bar_params', $collapse_array );
 
 	// Theme icons.
 	wp_enqueue_style( 'polestar-icons', get_template_directory_uri() . '/css/polestar-icons' . PURO_THEME_CSS_PREFIX . '.css', array(), PURO_THEME_VERSION );

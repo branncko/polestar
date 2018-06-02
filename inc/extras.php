@@ -60,10 +60,12 @@ function polestar_body_classes( $classes ) {
 		}	
 	}
 
-	// WooCommerce top bar.
-	if ( function_exists( 'is_woocommerce' ) && ! is_store_notice_showing() ) {
-		$classes[] = 'no-topbar';
-	} elseif ( ! class_exists( 'Woocommerce' ) ) {
+	// Top bar.
+	if ( class_exists( 'Woocommerce' ) ) {
+		if ( ! get_theme_mod( 'top_bar' ) && ! is_store_notice_showing() ) {
+			$classes[] = 'no-topbar';
+		}	
+	} elseif ( ! get_theme_mod( 'top_bar' ) ) {
 		$classes[] = 'no-topbar';
 	}
 

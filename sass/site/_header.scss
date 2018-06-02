@@ -19,14 +19,14 @@
 
 	@at-root {
 
-		.topbar-out & {
+		.top-bar-out & {
 			@include clearfix;
 			top: 0;
 			left: 0;
 			width: 100%;
 		}
 
-		.topbar-out.admin-bar & {
+		.top-bar-out.admin-bar & {
 			top: 32px;
 
 			@media (max-width: 782px) {
@@ -322,8 +322,47 @@
 	}
 }
 
-#topbar {
+#top-bar {
+	align-items: center;
+	border-bottom: 1px solid $color__background-hr-dark;
+	display: flex;
+	padding: 3px 0;
 	position: relative;
 	width: 100%;
 	z-index: 1000;
+	
+	.polestar-container {
+
+		> div {
+			display: inline-block;
+			width: 49.3%;
+			
+			&:last-of-type {
+				text-align: right;
+			}
+		}
+	}	
+
+	.top-bar-arrow {
+		color: $color__text-medium;
+		cursor: pointer;
+		overflow: auto;
+		text-align: center;
+		width: 100%;
+		z-index: 1000;
+		
+		&:before {
+			display: block;
+			font-family: $font__icon;
+			font-size: 17px;
+		}
+		
+		&:not(.show):before {
+			content: "\e902";
+		}
+
+		&.show:before {
+			content: "\f107";
+		}
+	}
 }

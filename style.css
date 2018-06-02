@@ -963,6 +963,45 @@ a {
   padding-left: 125px; }
 
 /*--------------------------------------------------------------
+## Top Bar Menus
+--------------------------------------------------------------*/
+#top-bar {
+  align-items: center;
+  display: flex;
+  padding: 3px 0; }
+  #top-bar .polestar-container > div {
+    display: inline-block;
+    width: 49.3%; }
+    #top-bar .polestar-container > div:last-of-type {
+      text-align: right; }
+  #top-bar .menu {
+    list-style: none;
+    margin: 0; }
+    #top-bar .menu li {
+      display: inline-block;
+      font-family: "Open Sans", sans-serif;
+      font-size: 12px;
+      line-height: 0;
+      margin: 0 30px -10px 0;
+      padding: 0 0 10px;
+      position: relative;
+      text-align: left; }
+      #top-bar .menu li:last-of-type {
+        margin-right: 0; }
+      #top-bar .menu li a {
+        color: #626262;
+        display: block; }
+        #top-bar .menu li a:before {
+          color: #828282;
+          font-size: 16px; }
+      #top-bar .menu li:hover > a,
+      #top-bar .menu li.focus > a {
+        color: #828282; }
+        #top-bar .menu li:hover > a:before,
+        #top-bar .menu li.focus > a:before {
+          color: #626262; }
+
+/*--------------------------------------------------------------
 ## Posts, Post and Comment Navigation
 --------------------------------------------------------------*/
 .comment-navigation,
@@ -1106,97 +1145,181 @@ a {
 /*--------------------------------------------------------------
 ## Footer Menu Social Icons
 --------------------------------------------------------------*/
-.footer-menu a[href*="behance.net"], .footer-menu a[href*="codepen.io"], .footer-menu a[href*="delicious.com"], .footer-menu a[href*="deviantart.com"], .footer-menu a[href*="digg.com"], .footer-menu a[href*="dribbble.com"], .footer-menu a[href*="facebook.com"], .footer-menu a[href*="flickr.com"], .footer-menu a[href*="foursquare.com"], .footer-menu a[href*="github.com"], .footer-menu a[href*="plus.google.com"], .footer-menu a[href*="instagram.com"], .footer-menu a[href*="linkedin.com"], .footer-menu a[href*="pinterest.com"], .footer-menu a[href*="reddit.com"], .footer-menu a[href*="soundcloud.com"], .footer-menu a[href*="stackexchange.com"], .footer-menu a[href*="stackoverflow.com"], .footer-menu a[href*="tumblr.com"], .footer-menu a[href*="twitter.com"], .footer-menu a[href*="vimeo.com"], .footer-menu a[href*="vine.co"], .footer-menu a[href*="vk.com"], .footer-menu a[href*="weibo.com"], .footer-menu a[href*="wordpress.com"], .footer-menu a[href*="xing"], .footer-menu a[href*="yelp"], .footer-menu a[href*="youtube.com"] {
+.footer-menu a[href*="behance.net"], .footer-menu a[href*="codepen.io"], .footer-menu a[href*="delicious.com"], .footer-menu a[href*="deviantart.com"], .footer-menu a[href*="digg.com"], .footer-menu a[href*="dribbble.com"], .footer-menu a[href*="facebook.com"], .footer-menu a[href*="flickr.com"], .footer-menu a[href*="foursquare.com"], .footer-menu a[href*="github.com"], .footer-menu a[href*="plus.google.com"], .footer-menu a[href*="instagram.com"], .footer-menu a[href*="linkedin.com"], .footer-menu a[href*="pinterest.com"], .footer-menu a[href*="reddit.com"], .footer-menu a[href*="soundcloud.com"], .footer-menu a[href*="stackexchange.com"], .footer-menu a[href*="stackoverflow.com"], .footer-menu a[href*="tumblr.com"], .footer-menu a[href*="twitter.com"], .footer-menu a[href*="vimeo.com"], .footer-menu a[href*="vine.co"], .footer-menu a[href*="vk.com"], .footer-menu a[href*="weibo.com"], .footer-menu a[href*="wordpress.com"], .footer-menu a[href*="xing"], .footer-menu a[href*="yelp"], .footer-menu a[href*="youtube.com"],
+.top-bar-secondary-menu a[href*="behance.net"],
+.top-bar-secondary-menu a[href*="codepen.io"],
+.top-bar-secondary-menu a[href*="delicious.com"],
+.top-bar-secondary-menu a[href*="deviantart.com"],
+.top-bar-secondary-menu a[href*="digg.com"],
+.top-bar-secondary-menu a[href*="dribbble.com"],
+.top-bar-secondary-menu a[href*="facebook.com"],
+.top-bar-secondary-menu a[href*="flickr.com"],
+.top-bar-secondary-menu a[href*="foursquare.com"],
+.top-bar-secondary-menu a[href*="github.com"],
+.top-bar-secondary-menu a[href*="plus.google.com"],
+.top-bar-secondary-menu a[href*="instagram.com"],
+.top-bar-secondary-menu a[href*="linkedin.com"],
+.top-bar-secondary-menu a[href*="pinterest.com"],
+.top-bar-secondary-menu a[href*="reddit.com"],
+.top-bar-secondary-menu a[href*="soundcloud.com"],
+.top-bar-secondary-menu a[href*="stackexchange.com"],
+.top-bar-secondary-menu a[href*="stackoverflow.com"],
+.top-bar-secondary-menu a[href*="tumblr.com"],
+.top-bar-secondary-menu a[href*="twitter.com"],
+.top-bar-secondary-menu a[href*="vimeo.com"],
+.top-bar-secondary-menu a[href*="vine.co"],
+.top-bar-secondary-menu a[href*="vk.com"],
+.top-bar-secondary-menu a[href*="weibo.com"],
+.top-bar-secondary-menu a[href*="wordpress.com"],
+.top-bar-secondary-menu a[href*="xing"],
+.top-bar-secondary-menu a[href*="yelp"],
+.top-bar-secondary-menu a[href*="youtube.com"] {
   font-size: 0;
   margin-right: -16px;
   text-align: center; }
-  .footer-menu a[href*="behance.net"]:before, .footer-menu a[href*="codepen.io"]:before, .footer-menu a[href*="delicious.com"]:before, .footer-menu a[href*="deviantart.com"]:before, .footer-menu a[href*="digg.com"]:before, .footer-menu a[href*="dribbble.com"]:before, .footer-menu a[href*="facebook.com"]:before, .footer-menu a[href*="flickr.com"]:before, .footer-menu a[href*="foursquare.com"]:before, .footer-menu a[href*="github.com"]:before, .footer-menu a[href*="plus.google.com"]:before, .footer-menu a[href*="instagram.com"]:before, .footer-menu a[href*="linkedin.com"]:before, .footer-menu a[href*="pinterest.com"]:before, .footer-menu a[href*="reddit.com"]:before, .footer-menu a[href*="soundcloud.com"]:before, .footer-menu a[href*="stackexchange.com"]:before, .footer-menu a[href*="stackoverflow.com"]:before, .footer-menu a[href*="tumblr.com"]:before, .footer-menu a[href*="twitter.com"]:before, .footer-menu a[href*="vimeo.com"]:before, .footer-menu a[href*="vine.co"]:before, .footer-menu a[href*="vk.com"]:before, .footer-menu a[href*="weibo.com"]:before, .footer-menu a[href*="wordpress.com"]:before, .footer-menu a[href*="xing"]:before, .footer-menu a[href*="yelp"]:before, .footer-menu a[href*="youtube.com"]:before {
+  .footer-menu a[href*="behance.net"]:before, .footer-menu a[href*="codepen.io"]:before, .footer-menu a[href*="delicious.com"]:before, .footer-menu a[href*="deviantart.com"]:before, .footer-menu a[href*="digg.com"]:before, .footer-menu a[href*="dribbble.com"]:before, .footer-menu a[href*="facebook.com"]:before, .footer-menu a[href*="flickr.com"]:before, .footer-menu a[href*="foursquare.com"]:before, .footer-menu a[href*="github.com"]:before, .footer-menu a[href*="plus.google.com"]:before, .footer-menu a[href*="instagram.com"]:before, .footer-menu a[href*="linkedin.com"]:before, .footer-menu a[href*="pinterest.com"]:before, .footer-menu a[href*="reddit.com"]:before, .footer-menu a[href*="soundcloud.com"]:before, .footer-menu a[href*="stackexchange.com"]:before, .footer-menu a[href*="stackoverflow.com"]:before, .footer-menu a[href*="tumblr.com"]:before, .footer-menu a[href*="twitter.com"]:before, .footer-menu a[href*="vimeo.com"]:before, .footer-menu a[href*="vine.co"]:before, .footer-menu a[href*="vk.com"]:before, .footer-menu a[href*="weibo.com"]:before, .footer-menu a[href*="wordpress.com"]:before, .footer-menu a[href*="xing"]:before, .footer-menu a[href*="yelp"]:before, .footer-menu a[href*="youtube.com"]:before,
+  .top-bar-secondary-menu a[href*="behance.net"]:before,
+  .top-bar-secondary-menu a[href*="codepen.io"]:before,
+  .top-bar-secondary-menu a[href*="delicious.com"]:before,
+  .top-bar-secondary-menu a[href*="deviantart.com"]:before,
+  .top-bar-secondary-menu a[href*="digg.com"]:before,
+  .top-bar-secondary-menu a[href*="dribbble.com"]:before,
+  .top-bar-secondary-menu a[href*="facebook.com"]:before,
+  .top-bar-secondary-menu a[href*="flickr.com"]:before,
+  .top-bar-secondary-menu a[href*="foursquare.com"]:before,
+  .top-bar-secondary-menu a[href*="github.com"]:before,
+  .top-bar-secondary-menu a[href*="plus.google.com"]:before,
+  .top-bar-secondary-menu a[href*="instagram.com"]:before,
+  .top-bar-secondary-menu a[href*="linkedin.com"]:before,
+  .top-bar-secondary-menu a[href*="pinterest.com"]:before,
+  .top-bar-secondary-menu a[href*="reddit.com"]:before,
+  .top-bar-secondary-menu a[href*="soundcloud.com"]:before,
+  .top-bar-secondary-menu a[href*="stackexchange.com"]:before,
+  .top-bar-secondary-menu a[href*="stackoverflow.com"]:before,
+  .top-bar-secondary-menu a[href*="tumblr.com"]:before,
+  .top-bar-secondary-menu a[href*="twitter.com"]:before,
+  .top-bar-secondary-menu a[href*="vimeo.com"]:before,
+  .top-bar-secondary-menu a[href*="vine.co"]:before,
+  .top-bar-secondary-menu a[href*="vk.com"]:before,
+  .top-bar-secondary-menu a[href*="weibo.com"]:before,
+  .top-bar-secondary-menu a[href*="wordpress.com"]:before,
+  .top-bar-secondary-menu a[href*="xing"]:before,
+  .top-bar-secondary-menu a[href*="yelp"]:before,
+  .top-bar-secondary-menu a[href*="youtube.com"]:before {
     font-family: "polestar-icons";
     font-size: 18px;
     transition: .2s; }
 
-.footer-menu a[href*="behance.net"]:before {
+.footer-menu a[href*="behance.net"]:before,
+.top-bar-secondary-menu a[href*="behance.net"]:before {
   content: "\f1b4"; }
 
-.footer-menu a[href*="codepen.io"]:before {
+.footer-menu a[href*="codepen.io"]:before,
+.top-bar-secondary-menu a[href*="codepen.io"]:before {
   content: "\f1cb"; }
 
-.footer-menu a[href*="delicious.com"]:before {
+.footer-menu a[href*="delicious.com"]:before,
+.top-bar-secondary-menu a[href*="delicious.com"]:before {
   content: "\f1a5"; }
 
-.footer-menu a[href*="deviantart.com"]:before {
+.footer-menu a[href*="deviantart.com"]:before,
+.top-bar-secondary-menu a[href*="deviantart.com"]:before {
   content: "\f1bd"; }
 
-.footer-menu a[href*="digg.com"]:before {
+.footer-menu a[href*="digg.com"]:before,
+.top-bar-secondary-menu a[href*="digg.com"]:before {
   content: "\f1a6"; }
 
-.footer-menu a[href*="dribbble.com"]:before {
+.footer-menu a[href*="dribbble.com"]:before,
+.top-bar-secondary-menu a[href*="dribbble.com"]:before {
   content: "\f17d"; }
 
-.footer-menu a[href*="facebook.com"]:before {
+.footer-menu a[href*="facebook.com"]:before,
+.top-bar-secondary-menu a[href*="facebook.com"]:before {
   content: "\f09a"; }
 
-.footer-menu a[href*="flickr.com"]:before {
+.footer-menu a[href*="flickr.com"]:before,
+.top-bar-secondary-menu a[href*="flickr.com"]:before {
   content: "\f16e"; }
 
-.footer-menu a[href*="foursquare.com"]:before {
+.footer-menu a[href*="foursquare.com"]:before,
+.top-bar-secondary-menu a[href*="foursquare.com"]:before {
   content: "\f180"; }
 
-.footer-menu a[href*="github.com"]:before {
+.footer-menu a[href*="github.com"]:before,
+.top-bar-secondary-menu a[href*="github.com"]:before {
   content: "\f09b"; }
 
-.footer-menu a[href*="plus.google.com"]:before {
+.footer-menu a[href*="plus.google.com"]:before,
+.top-bar-secondary-menu a[href*="plus.google.com"]:before {
   content: "\f0d5"; }
 
-.footer-menu a[href*="instagram.com"]:before {
+.footer-menu a[href*="instagram.com"]:before,
+.top-bar-secondary-menu a[href*="instagram.com"]:before {
   content: "\f16d"; }
 
-.footer-menu a[href*="linkedin.com"]:before {
+.footer-menu a[href*="linkedin.com"]:before,
+.top-bar-secondary-menu a[href*="linkedin.com"]:before {
   content: "\f0e1"; }
 
-.footer-menu a[href*="pinterest.com"]:before {
+.footer-menu a[href*="pinterest.com"]:before,
+.top-bar-secondary-menu a[href*="pinterest.com"]:before {
   content: "\f0d2"; }
 
-.footer-menu a[href*="reddit.com"]:before {
+.footer-menu a[href*="reddit.com"]:before,
+.top-bar-secondary-menu a[href*="reddit.com"]:before {
   content: "\f1a1"; }
 
-.footer-menu a[href*="soundcloud.com"]:before {
+.footer-menu a[href*="soundcloud.com"]:before,
+.top-bar-secondary-menu a[href*="soundcloud.com"]:before {
   content: "\f1be"; }
 
-.footer-menu a[href*="stackexchange.com"]:before {
+.footer-menu a[href*="stackexchange.com"]:before,
+.top-bar-secondary-menu a[href*="stackexchange.com"]:before {
   content: "\f18d"; }
 
-.footer-menu a[href*="stackoverflow.com"]:before {
+.footer-menu a[href*="stackoverflow.com"]:before,
+.top-bar-secondary-menu a[href*="stackoverflow.com"]:before {
   content: "\f16c"; }
 
-.footer-menu a[href*="tumblr.com"]:before {
+.footer-menu a[href*="tumblr.com"]:before,
+.top-bar-secondary-menu a[href*="tumblr.com"]:before {
   content: "\f173"; }
 
-.footer-menu a[href*="twitter.com"]:before {
+.footer-menu a[href*="twitter.com"]:before,
+.top-bar-secondary-menu a[href*="twitter.com"]:before {
   content: "\f099"; }
 
-.footer-menu a[href*="vimeo.com"]:before {
+.footer-menu a[href*="vimeo.com"]:before,
+.top-bar-secondary-menu a[href*="vimeo.com"]:before {
   content: "\f194"; }
 
-.footer-menu a[href*="vine.co"]:before {
+.footer-menu a[href*="vine.co"]:before,
+.top-bar-secondary-menu a[href*="vine.co"]:before {
   content: "\f1ca"; }
 
-.footer-menu a[href*="vk.com"]:before {
+.footer-menu a[href*="vk.com"]:before,
+.top-bar-secondary-menu a[href*="vk.com"]:before {
   content: "\f189"; }
 
-.footer-menu a[href*="weibo.com"]:before {
+.footer-menu a[href*="weibo.com"]:before,
+.top-bar-secondary-menu a[href*="weibo.com"]:before {
   content: "\f18a"; }
 
-.footer-menu a[href*="wordpress.com"]:before {
+.footer-menu a[href*="wordpress.com"]:before,
+.top-bar-secondary-menu a[href*="wordpress.com"]:before {
   content: "\f19a"; }
 
-.footer-menu a[href*="xing"]:before {
+.footer-menu a[href*="xing"]:before,
+.top-bar-secondary-menu a[href*="xing"]:before {
   content: "\f168"; }
 
-.footer-menu a[href*="yelp.com"]:before {
+.footer-menu a[href*="yelp.com"]:before,
+.top-bar-secondary-menu a[href*="yelp.com"]:before {
   content: "\f1e9"; }
 
-.footer-menu a[href*="youtube.com"]:before {
+.footer-menu a[href*="youtube.com"]:before,
+.top-bar-secondary-menu a[href*="youtube.com"]:before {
   content: "\f16a"; }
 
 /*--------------------------------------------------------------
@@ -1661,18 +1784,18 @@ a {
     position: absolute; }
   .no-header-margin .site-header {
     margin-bottom: 0; }
-  .topbar-out .site-header {
+  .top-bar-out .site-header {
     top: 0;
     left: 0;
     width: 100%; }
-    .topbar-out .site-header::after {
+    .top-bar-out .site-header::after {
       clear: both;
       content: "";
       display: table; }
-  .topbar-out.admin-bar .site-header {
+  .top-bar-out.admin-bar .site-header {
     top: 32px; }
     @media (max-width: 782px) {
-      .topbar-out.admin-bar .site-header {
+      .top-bar-out.admin-bar .site-header {
         top: 46px; } }
   @media (max-width: 600px) {
     .admin-bar .site-header.sticky.stuck {
@@ -1862,10 +1985,34 @@ a {
   .no-header-margin .masthead-sentinel {
     margin-bottom: 0; }
 
-#topbar {
+#top-bar {
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  padding: 3px 0;
   position: relative;
   width: 100%;
   z-index: 1000; }
+  #top-bar .polestar-container > div {
+    display: inline-block;
+    width: 49.3%; }
+    #top-bar .polestar-container > div:last-of-type {
+      text-align: right; }
+  #top-bar .top-bar-arrow {
+    color: #626262;
+    cursor: pointer;
+    overflow: auto;
+    text-align: center;
+    width: 100%;
+    z-index: 1000; }
+    #top-bar .top-bar-arrow:before {
+      display: block;
+      font-family: "polestar-icons";
+      font-size: 17px; }
+    #top-bar .top-bar-arrow:not(.show):before {
+      content: "\e902"; }
+    #top-bar .top-bar-arrow.show:before {
+      content: "\f107"; }
 
 /*--------------------------------------------------------------
 ## - Posts and pages

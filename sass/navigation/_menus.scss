@@ -352,7 +352,7 @@
 		}				
 	}	
 
-	// Max Mega menu
+	// Max Mega menu.
 	#mega-menu-wrap-primary {
 		display: inline-block;
 
@@ -367,7 +367,7 @@
 			white-space: normal;
 			width: auto !important;
 		}
-	}	
+	}
 }
 
 /*--------------------------------------------------------------
@@ -564,6 +564,66 @@ $sel: '';
 }
 
 /*--------------------------------------------------------------
+## Top Bar Menus
+--------------------------------------------------------------*/
+#top-bar {
+	align-items: center;
+	display: flex;
+	padding: 3px 0;
+
+	.polestar-container {
+
+		> div {
+			display: inline-block;
+			width: 49.3%;
+			
+			&:last-of-type {
+				text-align: right;
+			}
+		}
+	}
+	
+	.menu {
+		list-style: none;
+		margin: 0;
+
+		li {
+			display: inline-block;
+			font-family: $font__main; 
+			font-size: 12px;
+			line-height: 0;
+			margin: 0 30px -10px 0; // Total right margin is 35px. 5px additional space per item due to inline-block.
+			padding: 0 0 10px; 
+			position: relative;
+			text-align: left;
+		
+			&:last-of-type {
+				margin-right: 0;
+			}
+
+			a {
+				color: $color__text-medium; 
+				display: block;
+				
+				&:before {
+					color: $color__text-light; 
+					font-size: 16px;
+				}
+			}		
+
+			&:hover > a,
+			&.focus > a {
+				color: $color__text-light;
+				
+				&:before {
+					color: $color__text-medium; 
+				}							
+			}	
+		}
+	}
+}
+
+/*--------------------------------------------------------------
 ## Posts, Post and Comment Navigation
 --------------------------------------------------------------*/
 .comment-navigation,
@@ -750,7 +810,8 @@ $sel: '';
 /*--------------------------------------------------------------
 ## Footer Menu Social Icons
 --------------------------------------------------------------*/
-.footer-menu {
+.footer-menu,
+.top-bar-secondary-menu {
 
 	a[href*="behance.net"], a[href*="codepen.io"], a[href*="delicious.com"], a[href*="deviantart.com"], a[href*="digg.com"], a[href*="dribbble.com"], a[href*="facebook.com"], a[href*="flickr.com"], a[href*="foursquare.com"], a[href*="github.com"], a[href*="plus.google.com"], a[href*="instagram.com"], a[href*="linkedin.com"], a[href*="pinterest.com"], a[href*="reddit.com"], a[href*="soundcloud.com"], a[href*="stackexchange.com"], a[href*="stackoverflow.com"], a[href*="tumblr.com"], a[href*="twitter.com"], a[href*="vimeo.com"], a[href*="vine.co"], a[href*="vk.com"], a[href*="weibo.com"], a[href*="wordpress.com"], a[href*="xing"], a[href*="yelp"], a[href*="youtube.com"] {		
 		font-size: 0;

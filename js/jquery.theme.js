@@ -42,7 +42,7 @@ jQuery( function( $ ) {
 				controlNav: false,
 				customDirectionNav: $( this ).find( '.flex-direction-nav a' ),
 				start: function() {
-         			$( '.flexslider .slides img' ).show();
+					$( '.flexslider .slides img' ).show();
 				}				
 			} );
 		} );
@@ -68,13 +68,189 @@ jQuery( function( $ ) {
 		$( 'html, body' ).animate( { scrollTop: 0 } );
 	} );
 
+	// Top bar.
+	function polestarToggleTopBar( selector, breakpointWidth ) {
+		return {
+			_selector: selector,
+			_breakpointWidth: breakpointWidth,
+			_duration: 500,
+			_firstRun: true,
+			_forceToShow: false,
+			_animating: false,
+			_currentState: '',
+			_startingState: '',
+			_eventCb: { stateStart: false, stateEnd: false },
+
+			_get: function() {
+				return $( this._selector );
+			},
+			_getState: function() {
+				if ( window.innerWidth >= this._breakpointWidth ) return 'show';
+				if ( this._forceToShow ) return 'force';
+				return 'hide';
+			},
+			_setNewState: function( newState, start ) {
+				if ( this._currentState == newState ) return;
+				if ( start ) {
+					if ( this._startingState != newState ) {
+						this._startingState = newState;
+						if ( this._eventCb.stateStart ) this._eventCb.stateStart( newState );
+					}
+				} else {
+					this._currentState = newState;
+					if ( this._eventCb.stateEnd ) this._eventCb.stateEnd( newState );
+				}
+			},
+			_hide: function( animate ) {
+				var header = this._get();
+				var self = this;
+				var css = {
+					'margin-top': -header.height()+'px'
+				};
+				this._setNewState( 'hide', true );
+				if ( animate ) {
+					this._animating = true;
+					header.animate( css, {
+						duration: this._duration,
+						step: function( now, fx ) {
+							if ( -self._get().height() != fx.end ) fx.end = -self._get().height();
+						},
+						done: function() {
+							self._animating = false;
+							self._setNewState( 'hide' );
+							self.adjust();
+						}
+					} );
+				} else {
+					header.css( css );
+					this._setNewState( 'hide' );
+				}
+			},
+			_show: function( animate ) {
+				var css = {
+					'margin-top': '0px'
+				};
+				var self = this;
+				var state = this._getState();
+				this._setNewState( state, true );
+				if ( animate ) {
+					this._animating = true;
+					this._get().animate( css, {
+						duration: this._duration,
+						step: function( now, fx ) {
+							var margin = -self._get().height();
+							if ( margin != fx.start ) fx.start = margin;
+						},
+						done: function() {
+							self._animating = false;
+							self._setNewState( state );
+							self.adjust();
+						}
+					} );
+				} else {
+					this._get().css( css );
+					this._setNewState( state );
+				}
+			},
+			toggle: function() {
+				switch ( this._currentState ) {
+					case 'force':
+						this._forceToShow = false;
+						break;
+					case 'hide':
+						this._forceToShow = true;
+						break;
+					default:
+						break;
+				}
+				this.adjust();
+			},
+			adjust: function() {
+				if ( this._animating ) {
+					return this;
+				}
+				if ( this._firstRun ) {
+					switch ( this._getState() ) {
+						case 'hide': this._hide(); break;
+						default: this._show();
+					}
+					this._firstRun = false;
+				} else {
+					var state = this._getState();
+					switch( state ) {
+						case 'hide':
+							if ( this._currentState == 'hide' ) this._hide();
+							else this._hide( true );
+							break;
+						default:
+							if ( this._currentState == 'hide' ) this._show( true );
+							else if( this._currentState != state ) this._show();
+					}
+				}
+				return this;
+			},
+			getCurrentState: function() {
+				return this._currentState;
+			},
+			on: function( event, cb ) {
+				switch ( event ) {
+					case 'statestart': 
+						this._eventCb.stateStart = cb; 
+						break;
+					case 'stateend': 
+						this._eventCb.stateEnd = cb; 
+						break;
+					default:
+					throw 'unknown event: '+event;
+				}
+				return this;
+			}
+		};
+	}
+
+	$( document ).ready( function() {
+		$( '.top-bar-arrow' ).css( 'display', 'none' );
+		var header = polestarToggleTopBar( '#top-bar .polestar-container', polestar_top_bar_params.collapse )
+		.on( 'stateend', function( state ) {
+			switch ( state ) {
+				case 'force':
+					$('.top-bar-arrow').removeClass( 'show' ).addClass( 'close' );
+					break;
+				case 'hide':
+					$('.top-bar-arrow').removeClass( 'close' ).addClass( 'show' );
+					break;
+				default:
+					$('.top-bar-arrow').removeClass( 'show' ).removeClass( 'close' );
+					break;
+			}
+		} )
+		.on( 'statestart', function( state ) {
+			switch ( state ) {
+				case 'force':
+					$( '.top-bar-arrow' ).css( 'display', '' );
+					break;
+				case 'hide':
+					$( '.top-bar-arrow' ).css( 'display', '' );
+					break;
+				default:
+					$( '.top-bar-arrow' ).css( 'display', 'none' );
+					break;
+			}
+		} )
+		.adjust();
+		window.onresize = function() { 
+			header.adjust();
+		}
+		$( '.top-bar-arrow' ).on( 'click', function() { header.toggle(); } );
+	} );
+
 	// Sticky header.
 	if ( $( '#masthead' ).hasClass( 'sticky' ) ) {
 		var $mhs = false,
 			pageTop = $( '#page' ).offset().top,
 			$mh = $( '#masthead' ),
-			$tb = $( '#topbar' ),
-			$tbwc = $( '#topbar .woocommerce-store-notice[style*="display: none"]' );
+			$tb = $( '#top-bar' ),
+			$tbwc = $( '#top-bar .woocommerce-store-notice[style*="display: none"]' );
 
 		var smSetup = function() {
 
@@ -85,21 +261,21 @@ jQuery( function( $ ) {
 				$mhs.css( 'height', $mh.outerHeight() );
 			}
 
-			if ( ! $( 'body' ).hasClass( 'no-topbar' ) && ! $tb.polestarIsVisible() ) {
-				$( 'body' ).addClass( 'topbar-out' );
+			if ( ! $( 'body' ).hasClass( 'no-top-bar' ) && ! $tb.polestarIsVisible() ) {
+				$( 'body' ).addClass( 'top-bar-out' );
 			}
 
-			if ( $tb.length && $( 'body' ).hasClass( 'topbar-out' ) && $tb.polestarIsVisible() ) {
-				$( 'body' ).removeClass( 'topbar-out' );
+			if ( $tb.length && $( 'body' ).hasClass( 'top-bar-out' ) && $tb.polestarIsVisible() ) {
+				$( 'body' ).removeClass( 'top-bar-out' );
 			}
 
-			if ( $( 'body' ).hasClass( 'no-topbar' ) && ! $( window ).scrollTop() ) {
-				$( 'body' ).addClass( 'topbar-out' );
+			if ( $( 'body' ).hasClass( 'no-top-bar' ) && ! $( window ).scrollTop() ) {
+				$( 'body' ).addClass( 'top-bar-out' );
 			}			
 
-			if ( $( 'body' ).hasClass( 'no-topbar' ) || ( ! $( 'body' ).hasClass( 'no-topbar' ) &&  $( 'body' ).hasClass( 'topbar-out' ) ) || $tbwc.length ) {
+			if ( $( 'body' ).hasClass( 'no-top-bar' ) || ( ! $( 'body' ).hasClass( 'no-top-bar' ) &&  $( 'body' ).hasClass( 'top-bar-out' ) ) || $tbwc.length ) {
 				$mh.css( 'position', 'fixed' );
-			} else if ( ! $( 'body' ).hasClass( 'no-topbar' ) && ! $( 'body' ).hasClass( 'topbar-out' ) ) {
+			} else if ( ! $( 'body' ).hasClass( 'no-top-bar' ) && ! $( 'body' ).hasClass( 'top-bar-out' ) ) {
 				$mh.css( 'position', 'absolute' );
 			}											
 
@@ -287,19 +463,19 @@ jQuery( function( $ ) {
 		$( '#site-navigation a[href*="#"]:not([href="#"]), .comments-link a[href*="#"]:not([href="#"]), .puro-scroll[href*="#"]:not([href="#"])' ).polestarSmoothScroll();
 	} );
 
-        // Adjust for sticky header when linking from external anchors.
-        jQuery( window ).load( function() {
+		// Adjust for sticky header when linking from external anchors.
+		jQuery( window ).load( function() {
 
-            if ( location.pathname.replace( /^\//,'' ) == window.location.pathname.replace( /^\//,'' ) && location.hostname == window.location.hostname ) {
-                var target = jQuery( window.location.hash );
-                if ( target.length ) {
-                    jQuery( 'html, body' ).animate( {
-                        scrollTop: target.offset().top - headerHeight
-                    }, 0 );
-                    return false;
-                }
-            }
-        } );   
+			if ( location.pathname.replace( /^\//,'' ) == window.location.pathname.replace( /^\//,'' ) && location.hostname == window.location.hostname ) {
+				var target = jQuery( window.location.hash );
+				if ( target.length ) {
+					jQuery( 'html, body' ).animate( {
+						scrollTop: target.offset().top - headerHeight
+					}, 0 );
+					return false;
+				}
+			}
+		} );   
 
 	// Indicate which section of the page we're viewing with selected menu classes.
 	function polestarSelected() {  
@@ -378,7 +554,7 @@ jQuery( function( $ ) {
 					e.preventDefault();
 					$( this ). siblings( '.dropdown-toggle' ).trigger( 'click' );
 				}
-  			} );			
+			} );			
 
 			var mmOverflow = function() {
 				if ( $( '#masthead' ).hasClass( 'sticky' ) ) {

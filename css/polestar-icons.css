@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'polestar-icons';
   src:
-    url('fonts/polestar-icons.ttf?1ixikj') format('truetype'),
-    url('fonts/polestar-icons.woff?1ixikj') format('woff'),
-    url('fonts/polestar-icons.svg?1ixikj#polestar-icons') format('svg');
+    url('fonts/polestar-icons.ttf?l4hy3c') format('truetype'),
+    url('fonts/polestar-icons.woff?l4hy3c') format('woff'),
+    url('fonts/polestar-icons.svg?l4hy3c#polestar-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -55,6 +55,9 @@
 }
 .icon-linkedin:before {
   content: "\f0e1";
+}
+.icon-angle-down:before {
+  content: "\f107";
 }
 .icon-circle:before {
   content: "\f111";
@@ -133,6 +136,9 @@
 }
 .icon-reddit-alien:before {
   content: "\f281";
+}
+.icon-angle-up:before {
+  content: "\e902";
 }
 .icon-close:before {
   content: "\e900";

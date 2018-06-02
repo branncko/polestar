@@ -23,12 +23,6 @@
 <?php do_action( 'polestar_body_top' ); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'polestar' ); ?></a>
-
-		<?php if ( class_exists( 'Woocommerce' ) && is_store_notice_showing() ) : ?>
-			<div id="topbar">
-				<?php polestar_woocommerce_demo_store(); ?>
-			</div><!-- #topbar -->
-		<?php endif; ?>
 		
 		<?php do_action( 'polestar_header_before' ); ?>
 		

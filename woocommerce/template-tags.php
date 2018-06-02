@@ -45,7 +45,7 @@ endif;
 add_action( 'after_setup_theme', 'polestar_woocommerce_change_hooks' );
 
 /**
- * Output the store notification.
+ * Store notice.
  */
 function polestar_woocommerce_demo_store() {
 	if ( ! is_store_notice_showing() ) {
@@ -60,6 +60,18 @@ function polestar_woocommerce_demo_store() {
 
 	echo '<p class="woocommerce-store-notice demo_store">' . wp_kses_post( $notice ) . ' <a href="#" class="woocommerce-store-notice__dismiss-link">' . esc_html__( 'Dismiss', 'polestar' ) . '</a></p>';
 }
+
+/**
+ * Output store notice.
+ */
+function polestar_woocommerce_output_notice() {
+	if ( is_store_notice_showing() ) : ?>
+		<div id="topbar">
+			<?php polestar_woocommerce_demo_store(); ?>
+		</div>
+	<?php endif;
+} 
+add_action( 'polestar_header_before', 'polestar_woocommerce_output_notice' );
 
 if ( ! function_exists( 'polestar_woocommerce_archive_product_image' ) ) :
 /**

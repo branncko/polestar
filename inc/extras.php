@@ -63,10 +63,10 @@ function polestar_body_classes( $classes ) {
 	// Top bar.
 	if ( class_exists( 'Woocommerce' ) ) {
 		if ( ! get_theme_mod( 'top_bar' ) && ! is_store_notice_showing() ) {
-			$classes[] = 'no-topbar';
+			$classes[] = 'no-top-bar';
 		}	
 	} elseif ( ! get_theme_mod( 'top_bar' ) ) {
-		$classes[] = 'no-topbar';
+		$classes[] = 'no-top-bar';
 	}
 
 	// WooCommerce columns.
